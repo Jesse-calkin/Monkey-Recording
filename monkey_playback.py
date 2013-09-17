@@ -18,10 +18,10 @@ import subprocess
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice, MonkeyImage
 
 # sets a variable with the package's internal name
-package = 'com.digidata.leapdrive.verizon'
+package = 'com.yourPackage'
 
 # sets a variable with the name of an Activity in the package
-activity = '.TeleiphoneMobileActivity'
+activity = '.MainActivity'
 
 # sets the name of the component to start
 runComponent = package + '/' + activity
@@ -30,7 +30,10 @@ runComponent = package + '/' + activity
 REF = 'reference.png'
 SCR = 'screenshot.png'
 CMP = 'comparison.png'
+
+#the acceptance threshold for image comparison
 ACCEPTANCE = 0.9
+
 # The format of the file we are parsing is very carfeully constructed.
 # Each line corresponds to a single command.  The line is split into 2
 # parts with a | character.  Text to the left of the pipe denotes
@@ -74,18 +77,18 @@ def main():
 
     device = MonkeyRunner.waitForConnection()
 	
-    # Runs the component
-    device.startActivity(component=runComponent)
+    # # Runs the component
+    # device.startActivity(component=runComponent)
 	
     process_file(fp, device)
 	
-    result = device.takeSnapshot()
-    result.writeToFile('shot2.png','png')
-    reference = MonkeyImage.loadFromFile('reference.png')
-    if not screenshot.sameAs(reference, ACCEPTANCE):
-       print "comparison failed, getting visual comparison..."
-       subprocess.call(["/usr/bin/compare", REF, SCR, CMP])
-    fp.close()
+    # result = device.takeSnapshot()
+    # result.writeToFile('shot2.png','png')
+    # reference = MonkeyImage.loadFromFile('reference.png')
+    # if not screenshot.sameAs(reference, ACCEPTANCE):
+    #    print "comparison failed, getting visual comparison..."
+    #    subprocess.call(["/usr/bin/compare", REF, SCR, CMP])
+    # fp.close()
     
 
 if __name__ == '__main__':

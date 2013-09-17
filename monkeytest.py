@@ -2,8 +2,11 @@
 import time
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice, MonkeyImage
 
-resultpath = "D:\\VZ4.6\\Android\\"
-refImg = MonkeyImage.loadFromFile("D:\\VZ4.6\\Android\\reference.png")
+#set the path to store results
+resultpath = ""
+
+#load a monkeyimage reference
+#refImg = MonkeyImage.loadFromFile("")
 
 # Connects to the current device, returning a MonkeyDevice object
 print "getting device..."
@@ -14,16 +17,15 @@ device = MonkeyRunner.waitForConnection()
 #device.installPackage('myproject/bin/MyApplication.apk')
 
 # sets a variable with the package's internal name
-package = 'com.digidata.leapdrive.verizon'
+package = 'com.yourpackage'
 print "set package " + package
 
 # sets a variable with the name of an Activity in the package
-activity = '.TeleiphoneMobileActivity'
+activity = '.mainActivity'
 print "set activity "+activity
 
 # sets the name of the component to start
 runComponent = package + '/' + activity
-
 
 # Runs the component
 print "running "+runComponent+"..."
